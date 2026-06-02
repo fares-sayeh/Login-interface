@@ -7,15 +7,15 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 const verificationCodes = {};
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "anasfaressayeh@gmail.com",
-        pass: "crzl qnui viix ejyi"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
@@ -41,7 +41,7 @@ app.post("/send-code", async (req, res) => {
 
     try {
         await transporter.sendMail({
-            from: "YOUR_EMAIL@gmail.com",
+            from: process.env.EMAIL_USER,
             to: email,
             subject: "Verification Code",
             html: `
@@ -87,6 +87,8 @@ app.post("/verify-code", (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
