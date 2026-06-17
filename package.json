@@ -1,0 +1,28 @@
+{
+  "name": "email-verification-login",
+  "version": "1.0.0",
+  "description": "Login system with email verification code",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "login",
+    "email",
+    "verification",
+    "nodemailer",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1",
+    "resend": "^6.12.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
